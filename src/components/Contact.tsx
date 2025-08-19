@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { MapPin, Phone, Mail, Instagram, Facebook } from 'lucide-react';
 
@@ -7,13 +8,39 @@ const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    contactNumber: '',
     message: '',
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    // Send email using Email.js
+    emailjs.send(
+      'lakecityphotography',
+      'template_y9kpi2h',
+      {
+        name: formData.name,
+        email: formData.email,
+        contactNumber: formData.contactNumber,
+        message: formData.message,
+      },
+      '30gOXNLgSa9kNZpnk'
+    )
+    .then(() => {
+      // WhatsApp message format
+      const whatsappNumber = '919983832968'; // admin number, no +
+      const text =
+        `Name: ${formData.name}%0A` +
+        `Email: ${formData.email}%0A` +
+        `Contact Number: ${formData.contactNumber}%0A` +
+        `Message: ${formData.message}`;
+      window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
+      alert('Message sent successfully!');
+      setFormData({ name: '', email: '', contactNumber: '', message: '' });
+    })
+    .catch(() => {
+      alert('Failed to send message. Please try again later.');
+    });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -91,6 +118,28 @@ const Contact: React.FC = () => {
                   className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-300 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm"
                 />
               </div>
+
+                <div>
+                  <label
+                    htmlFor="contactNumber"
+                    className="block font-inter text-sm font-medium text-slate-700 mb-2"
+                  >
+                    Contact Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="contactNumber"
+                    name="contactNumber"
+                    value={formData.contactNumber}
+                    onChange={handleChange}
+                    pattern="[6-9]{1}[0-9]{9}"
+                    maxLength={10}
+                    minLength={10}
+                    required
+                    className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-300 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm"
+                    placeholder="Enter 10-digit mobile number"
+                  />
+                </div>
 
               <div>
                 <label
