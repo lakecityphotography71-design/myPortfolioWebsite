@@ -4,11 +4,11 @@ const Hero: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const images = [
-    'https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&dpr=1',
-    'https://images.pexels.com/photos/2959192/pexels-photo-2959192.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&dpr=1',
-    'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&dpr=1',
-    'https://images.pexels.com/photos/1024967/pexels-photo-1024967.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&dpr=1',
-    'https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&dpr=1',
+    '/assets/image1.jpg',
+    '/assets/image2.jpg',
+    '/assets/image3.jpg',
+    '/assets/image4.jpg',
+    '/assets/image5.jpg',
   ];
 
   useEffect(() => {
