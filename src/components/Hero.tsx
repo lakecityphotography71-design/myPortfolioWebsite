@@ -4,11 +4,11 @@ const Hero: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const images = [
-    './assets/image1.jpg',
-    './assets/image2.jpg',
-    './assets/image3.jpg',
-    './assets/image4.jpg',
-    './assets/image5.jpg',
+    '../assets/image1.jpg',
+    '../assets/image2.jpg',
+    '../assets/image3.jpg',
+    '../assets/image4.jpg',
+    '../assets/image5.jpg',
   ];
 
   useEffect(() => {
